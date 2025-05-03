@@ -46,6 +46,27 @@ body {
     border-radius: 5px;
 }
 
+.navbar ul li.logout-link form {
+    display: inline; /* Aby formularz był w linii z innymi elementami listy */
+    padding: 0;
+    margin: 0;
+}
+
+.navbar ul li.logout-link form button {
+    background: none;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    font-size: 18px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.navbar ul li.logout-link form button:hover {
+    background-color: #575757;
+    border-radius: 5px;
+}
+
 
 
 /* Auth Form Styles */
@@ -403,3 +424,65 @@ p a:hover {
   .search-results {
     margin-top: 30px; /* Dodaj trochę odstępu od kafelków */
   }
+
+  /* About page */
+  .about-text {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    line-height: 1.6;
+    font-size: 1.1em;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+
+  .about-text h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .about-text p {
+    margin-bottom: 15px;
+  }
+
+/* Error Page Styles */
+.container {
+    padding: 30px;
+    background-color: transparent; /* Jeśli chcesz przezroczyste tło */
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto; /* Wyśrodkowanie kontenera na stronie */
+    max-width: 600px; /* Opcjonalne ograniczenie szerokości */
+}
+
+.error-code {
+    font-size: 8em;
+    font-weight: bold;
+    color: #d32f2f;
+    margin-bottom: 10px;
+}
+
+.error-message {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.home-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff; /* Kolor przycisku */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.home-button:hover {
+    background-color: #0056b3;
+}

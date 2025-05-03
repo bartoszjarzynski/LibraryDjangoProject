@@ -1,20 +1,12 @@
-<html>
-<head>
-    <title>About</title>
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
-</head>
-<body>
-    <div class="navbar">
-        <ul>
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'books' %}">Books and Authors</a></li>
-            <li><a href="{% url 'genres' %}">Genres</a></li>
-            <li><a href="{% url 'about' %}" class="active">About</a></li>
-            <li><a href="{% url 'login' %}">Login</a></li>
-            <li><a href="{% url 'register' %}">Register</a></li>
-        </ul>
-    </div>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block title %}About{% endblock %}
+{% block content %}
+    <h1>About Our Library</h1>
+    <div class="about-text">
+      <p>Welcome to our online library application! This project is designed to provide you with a convenient and accessible way to discover and explore books.</p>
+      <p>Our platform utilizes the power of the Google Books API to bring you a vast catalog of titles. You can easily search for books by title, author, or ISBN. Additionally, we offer curated lists of books by popular genres, allowing you to delve into your favorite subjects with ease.</p>
+      <p>Whether you're looking for a new fiction novel, a thrilling mystery, or an insightful biography, we aim to be your go-to resource for book discovery. We are constantly working to improve your experience and bring you more features to enhance your reading journey.</p>
+      <p>Thank you for visiting our library!</p>
+    </div>
+{% endblock %}

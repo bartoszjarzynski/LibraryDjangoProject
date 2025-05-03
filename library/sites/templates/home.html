@@ -1,24 +1,13 @@
-<html>
-<head>
-    <title>Home</title>
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
-</head>
-<body>
-    <div class="navbar">
-        <ul>
-            <li><a href="{% url 'home' %}" class="active">Home</a></li>
-            <li><a href="{% url 'books' %}">Books and Authors</a></li>
-            <li><a href="{% url 'genres' %}">Genres</a></li>
-            <li><a href="{% url 'about' %}">About</a></li>
-            <li><a href="{% url 'login' %}">Login</a></li>
-            <li><a href="{% url 'register' %}">Register</a></li>
-        </ul>
-    </div>
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
 
     <div class="home-content">
         {% block content %}
-        <h1>Welcome, {{ user.username }}!</h1>
+
+        {% if user.is_authenticated %}
+            <h1>Welcome, {{ user.username }}!</h1>
+        {% endif %}
 
         <h2>Suggested books</h2>
         <div class="book-tiles">
@@ -95,5 +84,3 @@
         </script>
         {% endblock %}
     </div>    
-</body>
-</html> 

@@ -1,45 +1,40 @@
-<html>
-<head>
-    <title>Register</title>
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
-</head>
-<body>
-    <div class="navbar">
-        <ul>
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'books' %}">Books and Authors</a></li>
-            <li><a href="{% url 'genres' %}">Genres</a></li>
-            <li><a href="{% url 'about' %}">About</a></li>
-            <li><a href="{% url 'login' %}">Login</a></li>
-            <li><a href="{% url 'register' %}" class="active">Register</a></li>
-        </ul>
-    </div>
+{% extends 'base.html' %}
 
+{% block title %}Register{% endblock %}
+
+{% block content %}
     <form method="POST" class="auth-form">
         {% csrf_token %}
         <div class="form-row">
             {{ form.username }}
-            {{ form.username.errors }}
+            {% if form.username.errors %}
+                <div class="error-messages">{{ form.username.errors }}</div>
+            {% endif %}
         </div>
         <div class="form-row">
             {{ form.email }}
-            {{ form.email.errors }}
+            {% if form.email.errors %}
+                <div class="error-messages">{{ form.email.errors }}</div>
+            {% endif %}
         </div>
         <div class="form-row">
             {{ form.password1 }}
-            {{ form.password1.errors }}
+            {% if form.password1.errors %}
+                <div class="error-messages">{{ form.password1.errors }}</div>
+            {% endif %}
         </div>
         <div class="form-row">
             {{ form.password2 }}
-            {{ form.password2.errors }}
+            {% if form.password2.errors %}
+                <div class="error-messages">{{ form.password2.errors }}</div>
+            {% endif %}
         </div>
         <div class="form-row">
             {{ form.role }}
-            {{ form.role.errors }}
+            {% if form.role.errors %}
+                <div class="error-messages">{{ form.role.errors }}</div>
+            {% endif %}
         </div>
         <button type="submit">Register</button>
     </form>
-    
-</body>
-</html>
+{% endblock %}

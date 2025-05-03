@@ -1,59 +1,11 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <title>Error</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Błąd 404 - Nie znaleziono strony</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-        }
+{% extends 'base.html' %}
 
-        .container {
-            padding: 30px;
-            background-color: transparent;
-            border-radius: 8px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
+{% block title %}Error{% endblock %}
 
-        .error-code {
-            font-size: 8em;
-            font-weight: bold;
-            color: #d32f2f;
-            margin-bottom: 10px;
-        }
-
-        .error-message {
-            font-size: 1.2em;
-            margin-bottom: 20px;
-        }
-    </style>
-</head>
-<body>
-    <div class="navbar">
-        <ul>
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'books' %}">Books</a></li>
-            <li><a href="{% url 'authors' %}">Authors</a></li>
-            <li><a href="{% url 'genres' %}">Genres</a></li>
-            <li><a href="{% url 'about' %}">About</a></li>
-            <li><a href="{% url 'login' %}">Login</a></li>
-            <li><a href="{% url 'register' %}">Register</a></li>
-        </ul>
-    </div>
-
+{% block content %}
     <div class="container">
         <h1 class="error-code">404</h1>
         <p class="error-message">Page not found...</p>
-
-        <a href="{% url 'home' %}" class="btn btn-primary">Go to Home</a>
-</body>
-</html>
+        <a href="{% url 'home' %}" class="home-button">Go to Home</a>
+    </div>
+{% endblock %}
