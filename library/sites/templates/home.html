@@ -1,21 +1,100 @@
 <html>
 <head>
-    <title>Library Home</title>
+    <title>Home</title>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="styles.css">
-
-    <main>
-        <h1>Welcome to the Library</h1>
-
-        <a class="btn btn-outline-secondary"  href="{% url 'books_list' %}">Book details</a>
-
-        
-
-    </main>
-
-    <footer>
-        <p>&copy; 2023 Library System</p>
-    </footer>
-
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
 </head>
-</html>
+<body>
+    <div class="navbar">
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'books' %}">Books</a></li>
+            <li><a href="{% url 'authors' %}">Authors</a></li>
+            <li><a href="{% url 'genres' %}">Genres</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'register' %}">Register</a></li>
+        </ul>
+    </div>
+
+    <div class="home-content">
+        {% block content %}
+        <h1>Welcome, {{ user.username }}!</h1>
+
+        <h2>Suggested books</h2>
+        <div class="book-tiles">
+            {% if random_books %}
+            {% for book in random_books %}
+                <div class="book-tile">
+                {% if book.volumeInfo.imageLinks.thumbnail %}
+                    <img src="{{ book.volumeInfo.imageLinks.thumbnail }}" alt="{{ book.volumeInfo.title }}">
+                {% endif %}
+                <h3 class="book-title-short" id="title-short-{{ forloop.counter }}">{{ book.volumeInfo.title|truncatechars:30 }}</h3>
+                <p class="book-title-full" id="title-full-{{ forloop.counter }}" style="display: none;">{{ book.volumeInfo.title }}</p>
+                {% if book.volumeInfo.authors %}
+                    <p class="author-short" id="author-short-{{ forloop.counter }}">{{ book.volumeInfo.authors|join:", "|truncatechars:40 }}</p>
+                    <p class="author-full" id="author-full-{{ forloop.counter }}" style="display: none;">Authors: {{ book.volumeInfo.authors|join:", " }}</p>
+                {% endif %}
+                <a href="{{ book.volumeInfo.infoLink }}" target="_blank">More</a>
+                </div>
+            {% endfor %}
+            {% else %}
+            <p>We were unable to fetch the books.</p>
+            {% endif %}
+        </div>
+
+        {% if user.is_authenticated and last_viewed_books %}
+            <h2>Last viewed</h2>
+            <div class="book-tiles">
+            {% for book in last_viewed_books %}
+                <div class="book-tile">
+                {% if book.volumeInfo.imageLinks.thumbnail %}
+                    <img src="{{ book.volumeInfo.imageLinks.thumbnail }}" alt="{{ book.volumeInfo.title }}">
+                {% endif %}
+                <h3 class="book-title-short" id="last-viewed-title-short-{{ forloop.counter }}">{{ book.volumeInfo.title|truncatechars:30 }}</h3>
+                <p class="book-title-full" id="last-viewed-title-full-{{ forloop.counter }}" style="display: none;">{{ book.volumeInfo.title }}</p>
+                {% if book.volumeInfo.authors %}
+                    <p class="author-short" id="last-viewed-author-short-{{ forloop.counter }}">{{ book.volumeInfo.authors|join:", "|truncatechars:40 }}</p>
+                    <p class="author-full" id="last-viewed-author-full-{{ forloop.counter }}" style="display: none;">Authors: {{ book.volumeInfo.authors|join:", " }}</p>
+                {% endif %}
+                <a href="{{ book.volumeInfo.infoLink }}" target="_blank">More</a>
+                </div>
+            {% endfor %}
+            </div>
+        {% endif %}
+        {% endblock %}
+
+        {% block extra_js %}
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const shortTitles = document.querySelectorAll('.book-title-short');
+            shortTitles.forEach(title => {
+            title.addEventListener('click', function() {
+                const index = this.id.split('-').pop();
+                const fullTitle = document.getElementById('title-full-' + index) || document.getElementById('last-viewed-title-full-' + index);
+                if (fullTitle) {
+                this.textContent = fullTitle.textContent;
+                fullTitle.style.display = 'none';
+                this.classList.remove('book-title-short');
+                }
+            });
+            });
+
+            const shortAuthors = document.querySelectorAll('.author-short');
+            shortAuthors.forEach(author => {
+            author.addEventListener('click', function() {
+                const index = this.id.split('-').pop();
+                const fullAuthor = document.getElementById('author-full-' + index) || document.getElementById('last-viewed-author-full-' + index);
+                if (fullAuthor) {
+                this.textContent = fullAuthor.textContent.replace('Autorzy: ', ''); // Wyświetlaj tylko listę autorów
+                fullAuthor.style.display = 'none';
+                this.classList.remove('author-short');
+                }
+            });
+            });
+        });
+        </script>
+        {% endblock %}
+    </div>    
+</body>
+</html> 

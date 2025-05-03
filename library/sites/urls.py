@@ -3,7 +3,11 @@ from . import views
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('get-books/', views.get_api_data, name='get_books'),
-    path('books/', views.get_api_data, name='books_list'),
-    path('error/', views.get_api_data, name='error'),
+    path('books/', views.books, name='books'),
+    path('authors/', views.authors, name='authors'),
+    path('genres/', views.genres, name='genres'),
+    path('about/', views.about, name='about'),
+    path('login/', views.user_login, name='login'),
+    path('register/', views.register, name='register'),
+    path('error/', views.error, name='error'),
 ]

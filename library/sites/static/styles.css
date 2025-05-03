@@ -1,3 +1,240 @@
-* {
-    background-color: aqua;
+body {
+    background-color: #e5e5f7;
+    opacity: 0.8;
+    background-image: radial-gradient(#ffffff 0.5px, #e5e5f7 0.5px);
+    background-size: 10px 10px;
+    margin: 0;
+    padding: 0;
 }
+
+
+
+/* Navbar Styles */
+.navbar {
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.navbar ul {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.navbar ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    padding: 10px 15px;
+}
+
+.navbar ul li a:hover {
+    background-color: #575757;
+    border-radius: 5px;
+}
+
+
+
+
+/* Auth Form Styles */
+form.auth-form {
+    background-color: transparent;
+    padding: 20px;
+    max-width: 400px;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+form.auth-form div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form.auth-form label {
+    width: 120px;
+    margin-right: 10px;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+form.auth-form input[type="text"],
+form.auth-form input[type="password"],
+form.auth-form input[type="email"],
+.auth-form .form-row select.form-control {
+    background-color: transparent;
+    border: 1px solid #cccccc;
+    width: 50%;
+    padding: 12px;
+    border-radius: 25px;
+    box-sizing: border-box;
+    margin: auto;
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+}
+
+input::placeholder {
+    color: #333;
+}
+
+.auth-form .form-row select.form-control {
+    appearance: none; /* Usuwa domyślny wygląd strzałki */
+    background-image: url('data:image/svg+xml;utf8,<svg fill="currentColor" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 0.8em top 50%;
+    background-size: 0.65em auto;
+    padding-right: 2em; /* Zostaw miejsce na strzałkę */
+  }
+
+  .auth-form .form-row select.form-control::-ms-expand {
+    display: none;
+  }
+
+form.auth-form button {
+    background-color: #333;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    width: 50%;
+    font-size: 1em;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin: auto;
+}
+
+form.auth-form button:hover {
+    background-color: #575757;
+    transition: background-color 0.3s ease;
+}
+
+.form-row {
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Links */
+p {
+    text-align: center;
+}
+
+p a {
+    color: #333;
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+
+
+
+
+
+/* Home page */
+.home-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.book-tiles {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 20px;
+    margin-top: 20px 20px;
+    padding-bottom: 15px;
+  }
+  
+  .book-tile {
+    width: 150px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    flex-shrink: 0;
+    display: flex; /* Używamy Flexbox dla zawartości kafelka */
+    flex-direction: column; /* Elementy w kolumnie */
+  }
+  
+  .book-tile img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+  .book-tile h3 {
+    font-size: 1em;
+    margin-bottom: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    word-wrap: break-word;
+    max-height: auto;
+    max-width: 100%;
+    line-height: 1.2em;
+  }
+  
+  .book-tile p {
+    font-size: 0.8em;
+    color: #777;
+    margin-bottom: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    word-wrap: break-word;
+    max-height: auto;
+    line-height: 1.2em;
+  }
+  
+  .book-tile p.author {
+    font-size: 0.8em;
+    color: #777;
+    margin-top: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-bottom: 5px;
+  }
+  
+  .book-tile a {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 3px;
+    font-size: 0.8em;
+    margin-top: auto; /* Przesuwa przycisk na dół */
+  }
+  
+  .book-tile a:hover {
+    background-color: #0056b3;
+  }
+
+  .book-title-short, .book-author-short {
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+  }
