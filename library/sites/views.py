@@ -42,12 +42,6 @@ def books(request):
     books_data = fetch_books(query, api_key)
     return render(request, 'books.html', {'books': books_data, 'search_term': query})
 
-def authors(request):
-    query = request.GET.get('q', 'authors')
-    api_key = settings.API_KEY
-    authors_data = fetch_books(f'inauthor:{query}', api_key)
-    return render(request, 'authors.html', {'authors': authors_data, 'search_term': query})
-
 def genres(request):
     query = request.GET.get('q', 'genres')
     api_key = settings.API_KEY

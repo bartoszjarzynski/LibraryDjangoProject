@@ -8,8 +8,7 @@
     <div class="navbar">
         <ul>
             <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'books' %}">Books</a></li>
-            <li><a href="{% url 'authors' %}">Authors</a></li>
+            <li><a href="{% url 'books' %}" class="active">Books and Authors</a></li>
             <li><a href="{% url 'genres' %}">Genres</a></li>
             <li><a href="{% url 'about' %}">About</a></li>
             <li><a href="{% url 'login' %}">Login</a></li>
@@ -17,5 +16,59 @@
         </ul>
     </div>
 
-</body>
-</html>
+    {% block content %}
+    <div class='search-page-header'>
+      <h1>Search for Books</h1>
+    </div>
+  
+    <div class='search-page-form'>
+      <form method="get" action="{% url 'books' %}">
+        <input type="text" name="q" placeholder="Type title, author or ISBN">
+        <button type="submit">Search</button>
+      </form>
+    </div>
+  
+    <div class="search-results">
+      {% if books %}
+        <h2>Results for "{{ search_term }}"</h2>
+        <ul>
+          {% for book_item in books %}
+            <li>
+              <div class="book-item">
+                <div class="book-cover">
+                  {% if book_item.volumeInfo.imageLinks and book_item.volumeInfo.imageLinks.thumbnail %}
+                    <img src="{{ book_item.volumeInfo.imageLinks.thumbnail }}" alt="cover">
+                  {% else %}
+                    <div class="no-cover">No cover available</div>
+                  {% endif %}
+                </div>
+                <div class="book-info">
+                  <h3>
+                    {% if book_item.volumeInfo.title %}
+                      {{ book_item.volumeInfo.title }}
+                    {% else %}
+                      No title available
+                    {% endif %}
+                  </h3>
+                  {% if book_item.volumeInfo.authors %}
+                    <p class="authors">Authors: {{ book_item.volumeInfo.authors|join:", " }}</p>
+                  {% endif %}
+                  {% if book_item.volumeInfo.description %}
+                    <p class="description">{{ book_item.volumeInfo.description|truncatewords:100 }}</p>
+                  {% endif %}
+                  {% if book_item.volumeInfo.infoLink %}
+                    <a href="{{ book_item.volumeInfo.infoLink }}" class="more-info-button" target="_blank">More</a>
+                  {% endif %}
+                </div>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>Search for books using the search bar.</p>
+      {% endif %}
+    </div>
+  {% endblock %}
+  
+  </body>
+  </html>

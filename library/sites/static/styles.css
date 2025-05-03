@@ -41,6 +41,10 @@ body {
     border-radius: 5px;
 }
 
+.active {
+    background-color: #484848;
+    border-radius: 5px;
+}
 
 
 
@@ -238,3 +242,135 @@ p a:hover {
     white-space: nowrap;
     max-width: 100%;
   }
+
+
+  /* Books page */
+.search-page-header,
+.search-page-form {
+    margin-left: 20px;
+    text-align: left;
+}
+
+.search-results {
+  margin-left: 20px;
+}
+
+.search-results ul {
+    margin: auto;
+    list-style: none;
+    padding: 0;
+}
+
+.search-results li {
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #eee;
+    display: flex; /* Użyj Flexboxa dla elementów listy */
+    align-items: center; /* Wyśrodkuj elementy w pionie */
+    text-align: center; /* Wyśrodkuj tekst wewnątrz elementów (domyślnie) */
+}
+
+.book-item {
+    display: flex; /* Ułożenie okładki i informacji obok siebie */
+    align-items: center; /* Wyśrodkuj elementy w pionie wewnątrz .book-item */
+    width: 80%; /* Ogranicz szerokość kontenera książki */
+    margin: 0 auto; /* Wyśrodkuj kontener książki na stronie */
+}
+
+.book-cover {
+    margin-right: 20px;
+    width: 100px;
+    flex-shrink: 0;
+}
+
+.book-cover img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Wyśrodkuj obraz wewnątrz .book-cover */
+}
+
+.book-cover .no-cover {
+    background-color: #f0f0f0;
+    color: #777;
+    text-align: center;
+    padding: 20px 10px;
+    height: auto;
+    font-size: 0.8em;
+    margin: 0 auto; /* Wyśrodkuj tekst "Brak okładki" */
+}
+
+.book-info {
+    flex-grow: 1; /* Pozwól informacjom zajmować resztę miejsca */
+    text-align: left; /* Wyjustuj tekst do lewej w informacjach */
+    max-width: 60%; /* Ogranicz maksymalną szerokość informacji */
+    margin-left: 20px; /* Dodaj odstęp od okładki */
+}
+
+.book-info h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: 1.5em;
+    text-align: center; /* Wyśrodkuj tytuł */
+}
+
+.book-info .authors {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 10px;
+    font-size: 0.9em;
+    text-align: center; /* Wyśrodkuj autorów */
+}
+
+.book-info .description {
+    line-height: 1.6;
+    margin-bottom: 15px;
+    font-size: 0.95em;
+    color: #333;
+    max-width: 80%; /* Ogranicz szerokość opisu */
+    margin-left: auto;
+    margin-right: auto; /* Wyśrodkuj opis */
+    text-align: center; /* Wyśrodkuj opis */
+}
+
+.book-info .more-info-button {
+    display: block; /* Przycisk na nowej linii i zajmuje całą dostępną szerokość */
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+    margin: 10px auto; /* Wyśrodkuj przycisk */
+    width: fit-content; /* Dopasuj szerokość do zawartości */
+}
+
+.book-info .more-info-button:hover {
+    background-color: #0056b3;
+}
+
+/* Style responsywne (opcjonalnie) */
+@media (max-width: 600px) {
+    .search-results li {
+        flex-direction: column; /* Ułóż elementy w kolumnie */
+        align-items: center; /* Wyśrodkuj elementy */
+        text-align: center;
+    }
+    .book-item {
+        flex-direction: column;
+        align-items: center;
+        width: 95%;
+    }
+    .book-cover {
+        margin-right: 0;
+        margin-bottom: 15px;
+        width: 100%;
+        max-width: 150px;
+    }
+    .book-info {
+        text-align: center;
+        margin-left: 0;
+        max-width: 90%;
+    }
+}
