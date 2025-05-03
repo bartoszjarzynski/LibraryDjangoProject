@@ -43,10 +43,20 @@ def books(request):
     return render(request, 'books.html', {'books': books_data, 'search_term': query})
 
 def genres(request):
-    query = request.GET.get('q', 'genres')
     api_key = settings.API_KEY
-    genres_data = fetch_books(f'subject:{query}', api_key)
-    return render(request, 'genres.html', {'genres': genres_data, 'search_term': query})
+    selected_genre = request.GET.get('q')
+    popular_genres = ["fiction", "mystery", "science fiction", "fantasy", "thriller", "romance", "history", "biography", "horror", "comedy"]
+    books_data = None
+    search_term = None
+
+    if selected_genre:
+        books_data = fetch_books(f'subject:{selected_genre}', api_key, max_results=10)
+        search_term = selected_genre
+        context = {'popular_genres': popular_genres, 'books': books_data, 'search_term': search_term}
+    else:
+        context = {'popular_genres': popular_genres}
+
+    return render(request, 'genres.html', context)
 
 def about(request):
     return render(request, 'about.html')

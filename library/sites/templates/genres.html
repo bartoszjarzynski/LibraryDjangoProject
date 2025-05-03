@@ -15,6 +15,59 @@
             <li><a href="{% url 'register' %}">Register</a></li>
         </ul>
     </div>
+    
+    {% block content %}
+    <div class="search-page-header">
+        <h1>Search for genres</h1>
+    </div>
+
+    <div class="genres-container">
+      {% for genre in popular_genres %}
+        <a href="{% url 'genres' %}?q={{ genre|urlencode }}" class="genre-tile">
+          {{ genre|capfirst }}
+        </a>
+      {% endfor %}
+    </div>
+  
+    <div class="search-results">
+      {% if books %}
+        <h2>Books from genre "{{ search_term }}"</h2>
+        <ul>
+          {% for book_item in books %}
+            <li>
+              <div class="book-item">
+                <div class="book-cover">
+                  {% if book_item.volumeInfo.imageLinks and book_item.volumeInfo.imageLinks.thumbnail %}
+                    <img src="{{ book_item.volumeInfo.imageLinks.thumbnail }}" alt="cover">
+                  {% else %}
+                    <div class="no-cover">No cover available</div>
+                  {% endif %}
+                </div>
+                <div class="book-info">
+                  <h3>
+                    {% if book_item.volumeInfo.title %}
+                      {{ book_item.volumeInfo.title }}
+                    {% else %}
+                      No title available
+                    {% endif %}
+                  </h3>
+                  {% if book_item.volumeInfo.authors %}
+                    <p class="authors">Authors: {{ book_item.volumeInfo.authors|join:", " }}</p>
+                  {% endif %}
+                  {% if book_item.volumeInfo.description %}
+                    <p class="description">{{ book_item.volumeInfo.description|truncatewords:50 }}</p>
+                  {% endif %}
+                  {% if book_item.volumeInfo.infoLink %}
+                    <a href="{{ book_item.volumeInfo.infoLink }}" class="more-info-button" target="_blank">More</a>
+                  {% endif %}
+                </div>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+  {% endblock %}
 
 </body>
 </html>

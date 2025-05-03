@@ -374,3 +374,32 @@ p a:hover {
         max-width: 90%;
     }
 }
+
+/* Genres page */
+.genres-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+    justify-content: center;
+  }
+
+  .genre-tile {
+    display: inline-block;
+    background-color: #f8f9fa;
+    color: #333;
+    padding: 15px 25px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+  }
+
+  .genre-tile:hover {
+    background-color: #e9ecef;
+  }
+
+  .search-results {
+    margin-top: 30px; /* Dodaj trochę odstępu od kafelków */
+  }
