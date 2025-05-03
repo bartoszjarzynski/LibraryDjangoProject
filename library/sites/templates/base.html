@@ -15,6 +15,7 @@
             <li><a href="{% url 'genres' %}" {% if request.resolver_match.url_name == 'genres' %}class="active"{% endif %}>Genres</a></li>
             <li><a href="{% url 'about' %}" {% if request.resolver_match.url_name == 'about' %}class="active"{% endif %}>About</a></li>
             {% if user.is_authenticated %}
+                <li><a href="{% url 'loans' %}">Loans</a></li>
                 <li class="logout-link">
                     <form method="post" action="{% url 'logout' %}">
                         {% csrf_token %}

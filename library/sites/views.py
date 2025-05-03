@@ -64,6 +64,8 @@ def about(request):
 def error(request):
     return render(request, 'error.html', {'error': 'Something went wrong.'})
 
+def loans(request):
+    return render(request, 'loans.html')
 
 def register(request):
     if request.method == 'POST':

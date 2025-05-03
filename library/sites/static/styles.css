@@ -32,7 +32,7 @@ body {
 .navbar ul li a {
     text-decoration: none;
     color: white;
-    font-size: 18px;
+    font-size: 1em;
     padding: 10px 15px;
 }
 
@@ -47,7 +47,7 @@ body {
 }
 
 .navbar ul li.logout-link form {
-    display: inline; /* Aby formularz był w linii z innymi elementami listy */
+    display: inline;
     padding: 0;
     margin: 0;
 }
@@ -57,13 +57,14 @@ body {
     border: none;
     color: white;
     padding: 10px 15px;
-    font-size: 18px;
+    font-size: 1em;
     cursor: pointer;
     text-decoration: none;
+    font-family: inherit;
 }
 
 .navbar ul li.logout-link form button:hover {
-    background-color: #575757;
+    background-color: #ff6969;
     border-radius: 5px;
 }
 
