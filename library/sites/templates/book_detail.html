@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ book.title }}{% endblock %}
+
+{% block content %}
+<div class="book-detail-container">
+    <div class="book-cover-container">
+        {% if book.cover_image %}
+        <img src="{{ book.cover_image.url }}" alt="{{ book.title }}" class="book-cover">
+        {% else %}
+        <div class="no-cover">No cover available</div>
+        {% endif %}
+    </div>
+    
+    <div class="book-info">
+        <h1>{{ book.title }}</h1>
+        <h2>by {{ book.author }}</h2>
+        <p class="genre">{{ book.get_genre_display }}</p>
+        <p class="availability">
+            {% if book.available_copies > 0 %}
+            <span class="available">Available: {{ book.available_copies }} copies</span>
+            {% else %}
+            <span class="unavailable">Currently unavailable</span>
+            {% endif %}
+        </p>
+        
+        <div class="book-description">
+            <h3>Description</h3>
+            <p>{{ book.description }}</p>
+        </div>
+        
+        {% if user.is_authenticated and user.role == 'reader' %}
+        <div class="loan-actions">
+            {% if book.available_copies > 0 %}
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn-borrow">Borrow this book</button>
+            </form>
+            {% else %}
+            <button class="btn-notify" disabled>Notify when available</button>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="reviews-section">
+    {% comment %} <h2>Reviews</h2>
+
+    {% if reviews %}
+        <ul>
+            {% for review in reviews %}
+                <li>
+                    <strong>{{ review.user.username }}:</strong> 
+                    <span>Rating: {{ review.rating }}</span><br>
+                    <p>{{ review.text }}</p>
+                    <small>{{ review.created_at|date:"F j, Y, g:i a" }}</small>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No reviews yet.</p>
+    {% endif %} {% endcomment %}
+
+    {% if user.is_authenticated %}
+        <h3>Write a Review</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit Review</button>
+        </form>
+    {% else %}
+        <p>You must be logged in to submit a review.</p>
+    {% endif %}
+    
+    {% if user.is_authenticated %}
+    <div class="add-review">
+        <h4>Add your review</h4>
+        <form method="post">
+            {% csrf_token %}
+            {{ review_form.as_p }}
+            <button type="submit" class="btn-submit">Submit Review</button>
+        </form>
+    </div>
+    {% endif %}
+</div>
+</div>
+{% endblock %}

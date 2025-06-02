@@ -45,3 +45,21 @@ class LoginForm(forms.Form):
             "username": "",
             "password": "",
         }
+
+class ReviewForm(forms.Form):
+    rating = forms.IntegerField(
+        min_value=1,
+        max_value=5,
+        widget=forms.NumberInput(attrs={"placeholder": "Rating (1-5)"}),
+    )
+    comment = forms.CharField(
+        widget=forms.Textarea(attrs={"placeholder": "Your review", "rows": 4}),
+        required=False,
+    )
+
+    class Meta:
+        fields = ["rating", "comment"]
+        help_texts = {
+            "rating": "",
+            "comment": "",
+        }

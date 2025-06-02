@@ -1,7 +1,48 @@
 {% extends 'base.html' %}
 
-{% block title %}Loans{% endblock %}
+{% block title %}Your Loans{% endblock %}
+
 {% block content %}
-    <h1>User's loans</h1>
+<div class="loans-container">
+    <h1>Your Loans</h1>
     
+    {% if loans %}
+    <table class="loans-table">
+        <thead>
+            <tr>
+                <th>Book Title</th>
+                <th>Loan Date</th>
+                <th>Due Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for loan in loans %}
+            <tr>
+                <td>{{ loan.book.title }}</td>
+                <td>{{ loan.loan_date|date:"Y-m-d" }}</td>
+                <td>{{ loan.due_date|date:"Y-m-d" }}</td>
+                <td class="status-{{ loan.status }}">
+                    {{ loan.get_status_display }}
+                    {% if loan.status == 'overdue' %}
+                    <span class="overdue-badge">Overdue!</span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if loan.status == 'borrowed' %}
+                        <form method="post" action="{% url 'return_book' loan.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-return">Return</button>
+                        </form>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>You currently have no active loans.</p>
+    {% endif %}
+</div>
 {% endblock %}

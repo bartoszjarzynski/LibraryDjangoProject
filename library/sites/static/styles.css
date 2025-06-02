@@ -184,6 +184,8 @@ p a:hover {
 
 .book-tiles {
     display: flex;
+    justify-content: center;
+    flex-direction: row;
     flex-wrap: nowrap;
     overflow-x: auto;
     gap: 20px;
@@ -218,6 +220,19 @@ p a:hover {
     max-height: auto;
     max-width: 100%;
     line-height: 1.2em;
+  }
+
+  .welcome-message-center {
+    text-align: center;
+    font-size: 1em;
+    color: black;
+  }
+
+  .h2-text-center {
+    text-align: center;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #333;
   }
   
   .book-tile p {
@@ -486,4 +501,82 @@ p a:hover {
 
 .home-button:hover {
     background-color: #0056b3;
+}
+
+
+
+/* Book detail styles */
+.book-detail-container {
+    display: flex;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.book-cover-container {
+    flex: 0 0 300px;
+}
+
+.book-cover {
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Loans Page Styles */
+.loans-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.loans-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.loans-table th, .loans-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.loans-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.status-borrowed {
+    color: #28a745;
+}
+
+.status-overdue {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+.status-reserved {
+    color: #ffc107;
+}
+
+.btn-return {
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-return:hover {
+    background-color: #138496;
+}
+
+.overdue-badge {
+    background-color: #dc3545;
+    color: white;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 0.8em;
+    margin-left: 5px;
 }

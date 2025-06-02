@@ -26,12 +26,29 @@
                 <li><a href="{% url 'login' %}">Login</a></li>
                 <li><a href="{% url 'register' %}">Register</a></li>
             {% endif %}
+
+            {% if user.is_authenticated and user.role == 'administrator' %}
+                <li><a href="{% url 'admin:index' %}">Admin Panel</a></li>
+            {% endif %}
         </ul>
     </div>
 
     <div class="content">
         {% block content %}
-            {% endblock %}
+            <img src="{{ book.cover_image.url }}" alt="{{ book.title }}" class="book-cover">
+            <h1>{{ book.title }}</h1>
+            <h2>by {{ book.author }}</h2>
+            <p>{{ book.description }}</p>
+            <p>Genre: {{ book.get_genre_display }}</p>
+            <p>Available copies: {{ book.available_copies }}</p>
+            
+            {% if user.is_authenticated and user.role == 'reader' and book.available_copies > 0 %}
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit">Borrow this book</button>
+                </form>
+            {% endif %}
+        {% endblock %}
     </div>
 
 </body>
